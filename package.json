@@ -1,0 +1,23 @@
+{
+  "name": "youtube-downloader-server",
+  "version": "1.0.0",
+  "description": "Simple webserver, implemented in nodejs, that allows to downloading youtube content in different formats (audio and video).",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imran3/youtube-downloader-server.git"
+  },
+  "keywords": [
+    "downloader-server",
+    "youtube-download"
+  ],
+  "author": "Imran A.",
+  "license": "SEE LICENCE IN LICENCE file.",
+  "bugs": {
+    "url": "https://github.com/imran3/youtube-downloader-server/issues"
+  },
+  "homepage": "https://github.com/imran3/youtube-downloader-server#readme"
+}
