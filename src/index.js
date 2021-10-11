@@ -5,21 +5,96 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 
 const app = express();
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(5000, () => {
   console.log("Server running at http://localhost:5000");
 });
 
-app.get("/", (req, res) => {
-  console.log("Requested root");
+app.get("/", (_, res) => {
   var msg = "hello there";
   res.json({ status: 200, msg: msg });
 });
 
-app.get("/download", (req, res) => {
-  console.log("/download requeted");
+app.get("/download-mp3", async (req, res, next) => {
+  log("Url: ", req.query.url);
+  try {
+    var url = req.query.url;
+    if (!ytdl.validateURL(url)) {
+      return res.status(400).send({
+        status: "failed",
+        message: "Invalid url",
+      });
+    }
+    let title = "audio";
 
-  var URL = req.query.URL;
-  res.json({ url: URL });
+    await ytdl.getBasicInfo(
+      url,
+      {
+        format: "mp4",
+      },
+      (err, info) => {
+        if (err) throw err;
+        title = info.player_response.videoDetails.title.replace(
+          /[^\x00-\x7F]/g,
+          ""
+        );
+      }
+    );
+
+    res.header("Content-Disposition", `attachment; filename="${title}.mp3"`);
+    ytdl(url, {
+      format: "mp3",
+      filter: "audioonly",
+    }).pipe(res);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({
+      status: "failed",
+      message: "An error occured while processing this request.",
+    });
+  }
 });
+
+app.get("/download-mp4", async (req, res, next) => {
+  log("Url: ", req.query.url);
+  try {
+    let url = req.query.url;
+    if (!ytdl.validateURL(url)) {
+      return res.status(400).send({
+        status: "failed",
+        message: "Invalid url",
+      });
+    }
+
+    let title = "video";
+
+    await ytdl.getBasicInfo(
+      url,
+      {
+        format: "mp4",
+      },
+      (err, info) => {
+        title = info.player_response.videoDetails.title.replace(
+          /[^\x00-\x7F]/g,
+          ""
+        );
+      }
+    );
+
+    res.header("Content-Disposition", `attachment; filename="${title}.mp4"`);
+    ytdl(url, {
+      format: "mp4",
+    }).pipe(res);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({
+      status: "failed",
+      message: "An error occured while processing this request.",
+    });
+  }
+});
+
+const log = (...msg) => {
+  console.log(msg);
+};
