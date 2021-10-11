@@ -13,21 +13,52 @@
     "basePath": "/",
     "tags": [],
     "paths": {
-      "/download": {
+      "/download-mp3": {
         "get": {
           "tags": ["Content"],
-          "summary": "Download x video",
+          "summary": "Download audio in mp3 format",
+          "parameters": [
+            {
+              "name": "url",
+              "path": "query",
+              "type": "string",
+              "required": true,
+              "description": "Url of the video you wish to download"
+            }
+          ],
           "responses": {
             "200": {
-              "description": "OK",
-              "schema": {
-                "$ref": "sd"
-              }
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/download-mp4": {
+        "get": {
+          "tags": ["Content"],
+          "summary": "Download video in mp4 format.",
+          "parameters": [
+            {
+              "name": "url",
+              "in": "body",
+              "description": "Url of the video you wish to download"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success response"
+            },
+            "400": {
+              "description": "Invalid value provided for video URL."
+            },
+            "500": {
+              "description": "An error occured processing the request."
             }
           }
         }
       }
     },
+    "definitions": {},
     "schemes": ["http"],
     "consumes": ["application/json"],
     "produces": ["application/json"]
