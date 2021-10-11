@@ -20,8 +20,9 @@
           "parameters": [
             {
               "name": "url",
-              "path": "query",
+              "in": "query",
               "type": "string",
+              "format": "url",
               "required": true,
               "description": "Url of the video you wish to download"
             }
@@ -37,10 +38,13 @@
         "get": {
           "tags": ["Content"],
           "summary": "Download video in mp4 format.",
-          "parameters": [
+          "parameters": [ 
             {
               "name": "url",
-              "in": "body",
+              "in": "query",
+              "type": "string",
+              "format": "url",
+              "required": true,
               "description": "Url of the video you wish to download"
             }
           ],
