@@ -16,7 +16,7 @@ app.get("/", (_, res) => {
   res.json({ status: 200, msg: msg });
 });
 
-app.get("/download-mp3", async (req, res, next) => {
+app.get("/mp3", async (req, res, next) => {
   log("Url: ", req.query.url);
   try {
     var url = req.query.url;
@@ -56,7 +56,7 @@ app.get("/download-mp3", async (req, res, next) => {
   }
 });
 
-app.get("/download-mp4", async (req, res, next) => {
+app.get("/mp4", async (req, res, next) => {
   log("Url: ", req.query.url);
   try {
     let url = req.query.url;

@@ -13,7 +13,7 @@
     "basePath": "/",
     "tags": [],
     "paths": {
-      "/download-mp3": {
+      "/mp3": {
         "get": {
           "tags": ["Content"],
           "summary": "Download audio in mp3 format",
@@ -34,7 +34,7 @@
           }
         }
       },
-      "/download-mp4": {
+      "/mp4": {
         "get": {
           "tags": ["Content"],
           "summary": "Download video in mp4 format.",
