@@ -2,6 +2,9 @@
   "name": "youtube-downloader-server",
   "version": "1.0.0",
   "description": "Simple webserver, implemented in nodejs, that allows to downloading youtube content in different formats (audio and video).",
+  "author": "Imran A.",
+  "license": "SEE LICENCE IN LICENCE file.",
+  "homepage": "https://github.com/imran3/youtube-downloader-server#readme",
   "main": "src/ndex.js",
   "scripts": {
     "test": "npm run test",
@@ -16,12 +19,9 @@
     "downloader-server",
     "youtube-download"
   ],
-  "author": "Imran A.",
-  "license": "SEE LICENCE IN LICENCE file.",
   "bugs": {
     "url": "https://github.com/imran3/youtube-downloader-server/issues"
   },
-  "homepage": "https://github.com/imran3/youtube-downloader-server#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -30,5 +30,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.13"
+  },
+  "engines": {
+    "node": "16.9"
   }
 }
